@@ -1,0 +1,118 @@
+#!/bin/bash
+
+bold=$(tput bold) 
+normal=$(tput sgr0)
+
+echo -e '\e[3;33mYou are working at SecurityBug as a penetration tester, and at youre coffee break, Joy, youre friend, wanted to challenge you.
+Joy made a shell script with a username and a password just for you, so you can log back to your account at your company.
+before Trying, try configuring the shell script and execute it at it should be from the first place.
+Before The Challenge start, Do You Want the Hint joy left you?'
+
+read answer
+if [[ $answer == 'yes' ]]; then
+echo "${normal}Are You Ready?"
+sleep 1.7
+
+echo '
+────────────██████████────────────
+────────███████████████████───────
+──────███████████████████████─────
+────██████████████████████████────
+───█████████████▀──────────▀███───
+──█████████████──────────────███──
+─████████████────────────────████─
+─██████████───────────────────███─
+██████████▀───────────────────████
+████████▀─────────────────────████
+██████▀────────────────────────███
+█████──▄▀▀▀▀▀▀▀▄────▄▀▀▀▀▀▀▀▄──███
+█████────▄▄▄▄▄────────▄▄▄▄▄────███
+█████──▄▀───▄██▄────▄▀───▄██▄──███
+█████──▀▄───▀▀█▀────▀▄───▀▀█▀──███
+█▀──█────▀▀▀▀▀────────▀▀▀▀▀────███
+█───█──────────────────────────█─█
+█────────────────────▄───────────█
+█───────────▄▀────────▀▄─────────█
+▀█─▄█───────▀▄─▀██──██───────────█
+─▀██────────────────────────────██
+──██────▄▀▀──────█─█──────▀▀▄──██─
+───█──────█▀▄────▀─▀────▄▀█────█──
+───█──────▀──▀▀▄▄▄▄▄▄▄▀▀──▀────█──
+───▀█─────────────────────────█▀──
+────▀█───────────────────────█▀───
+─────▀█─────────────────────█▀────
+──────▀█───────────────────█▀─────
+───────▀█─────────────────█▀──────
+────────▀█───▄───────▄───█▀───────
+─────────▀█▄──▀▄▄▄▄▄▀──▄█▀────────
+───────────▀▀█▄▄▄▄▄▄▄█▀▀──────────
+────────────────███───────────────
+──────────────███████─────────────
+─────────────██─███─██────────────
+────────────██──███──██───────────
+───────────██───███───██──────────
+──────────██────███────██─────────'
+echo "${normal}<!---Complete Me, I Am The Hint You Need---!>."
+echo''
+sleep 1.5
+echo "Use It Well, And Do Not Believe A Word I Am Saying."
+echo ''
+sleep 1
+
+else
+echo "${normal}OK, Well Good Luck."
+echo ''
+fi
+sleep 1.6
+
+echo 'What Is The Correct UserName Please? Choose From The List!' 
+sleep 1.7
+echo '' 
+
+echo -e '\e[3;33mYossi   |    Administrator   |    root   |    Secret   |    KaliLinux   |'
+echo
+sleep 1.8
+echo -e '\e[0mEnter UserName Here Please'
+
+
+ while :
+ do
+ read UserName
+  case $UserName in 
+  Shell )
+echo -e 'Enter Password'
+  break ;;
+  * ) echo UserName Fail. Try Again Please. ;;
+ esac
+done
+  case $UserName in
+   Yossi ) Login=Yossi;;
+   Administrator ) Login=`echo '123456' | base64`;;
+   root ) Login=5f4dcc3b5aa765d61d8327deb882cf99;;
+   Secret ) Login=`echo 'flag' > /tmp/flag.txt`;;
+   KaliLinux ) Login=KaliLinux;;
+   Shell ) log=`echo '1JY9/G/Q' | openssl enc -d -base64 -aes-128-ctr -nosalt -pbkdf2 -k H`;;
+   bin/bash ) access=`echo  'password123!' >> /tmp/flag.txt | md5sum`;;
+   /Desktop/Secret/Entry/Logfile/passwords ) try=Success;;
+esac
+read access
+
+
+while [ "$access" != "$log" ]; do
+echo "Password fail. Try again."
+if egrep -q "" /tmp/flag.txt; then
+Dollar=`echo -e 'Boom' | base64`
+
+else echo ''
+exit
+fi
+
+read access
+done
+cowsay W3lcom3 Back Joy, You Finished The Game and Even Earned A Flag. Well Done.
+sleep 1.5
+echo ''
+echo 'The FLag Is Waiting At /tmp Directory'
+
+echo -n ThanksFor$log$access | md5sum >> /tmp/flag.txt
+
